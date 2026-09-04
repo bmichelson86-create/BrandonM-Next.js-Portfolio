@@ -137,7 +137,7 @@ export const caseStudies: Record<string, CaseStudy> = {
           "The interface is built on a dark foundation that allows video and photography to take the lead. Typography is simple and intentional — large type for impact, restrained supporting text for clarity. Nothing competes for attention.",
           "Layout layering was handled carefully. Video, overlays, navigation, and interactive elements needed to live together without creating visual noise. Subtle overlap creates depth, but the screen always feels controlled and readable.",
         ],
-        figure: { src: "/images/djbc-pillar-system.webp", alt: "DJ Big Cali website UI showing dark-mode typography hierarchy and content layout", caption: "Dark-mode content hierarchy engineered for media layering, stat highlighting, and high-contrast readability." , contain: 'dark' },
+        figure: { src: "/images/djbc-pillar-system.webp", alt: "DJ Big Cali website UI showing dark-mode typography hierarchy and content layout", caption: "Dark-mode content hierarchy engineered for media layering, stat highlighting, and high-contrast readability."  },
       },
       {
         num: "03",
