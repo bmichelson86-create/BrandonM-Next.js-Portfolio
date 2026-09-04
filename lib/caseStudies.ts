@@ -4,7 +4,7 @@ export type CaseSection = {
   num: string;
   title: string;
   paragraphs: string[];
-  figure?: { src: string; alt: string; caption: string };
+  figure?: { src: string; alt: string; caption: string; contain?: boolean };
   list?: string[];
   /**
    * Placeholder prompts for copy only Brandon can write. These render as a
@@ -177,7 +177,7 @@ export const caseStudies: Record<string, CaseStudy> = {
           "The identity system was designed for versatility across digital and physical touchpoints. The primary logo uses a bold, geometric wordmark that reads clearly at any scale — from favicon to storefront signage. A secondary icon mark provides flexibility for social media profiles, product tags, and packaging embossments.",
           "The color hierarchy anchors the brand in deep, earthy tones with strategic accent colors that drive attention to calls-to-action and key product features. This system ensures consistent cross-platform brand recognition whether a customer encounters Bearded Threads on Instagram, the Shopify store, or a physical product tag.",
         ],
-        figure: { src: "/images/brand-system.webp", alt: "Bearded Threads brand identity system showing logo variations, typography, and color palette", caption: "Complete brand identity system including primary and secondary logo marks, typography hierarchy, and color palette." },
+        figure: { src: "/images/brand-system.webp", alt: "Bearded Threads brand identity system showing logo variations, typography, and color palette", caption: "Complete brand identity system including primary and secondary logo marks, typography hierarchy, and color palette." , contain: true },
       },
       {
         num: "03",

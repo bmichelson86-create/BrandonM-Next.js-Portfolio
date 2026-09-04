@@ -179,6 +179,18 @@
     height: auto;
 }
 
+/* Ports .case-study-image-wrapper--contain / .case-study-image--contain:
+   a light panel for transparent logo artwork that would be black-on-black. */
+.figureWrapContain {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.figureWrapContain img {
+    object-fit: contain;
+    max-height: 500px;
+}
+
 .caption {
     margin-top: 12px;
     font-size: 0.82rem;

@@ -12,6 +12,11 @@ type Props = {
   label: string;
   overlayTitle: string;
   overlayBody: string;
+  /**
+   * Sits the image on a light panel, contained rather than cropped. For
+   * transparent logo artwork that would otherwise be black-on-black.
+   */
+  contain?: boolean;
   /** Replaces the image with custom content (used by the RDR2 data pillars). */
   children?: ReactNode;
 };
@@ -26,6 +31,7 @@ export default function TiltCard({
   label,
   overlayTitle,
   overlayBody,
+  contain,
   children,
 }: Props) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -72,7 +78,9 @@ export default function TiltCard({
       <div className={styles.inner} ref={innerRef}>
         {children ?? (
           <>
-            <div className={styles.image}>
+            <div
+              className={`${styles.image} ${contain ? styles.imageContain : ''}`}
+            >
               {image && (
                 <Image
                   src={image}

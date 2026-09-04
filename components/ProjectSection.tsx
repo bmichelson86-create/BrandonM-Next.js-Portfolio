@@ -295,6 +295,7 @@ export default function ProjectSection({ project }: { project: Project }) {
                 key={card.label}
                 image={card.image}
                 alt={card.alt}
+                contain={card.contain}
                 label={card.label}
                 overlayTitle={card.overlayTitle}
                 overlayBody={card.overlayBody}

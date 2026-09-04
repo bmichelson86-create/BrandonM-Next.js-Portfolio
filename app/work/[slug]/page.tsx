@@ -93,7 +93,11 @@ export default async function CaseStudyPage({ params }: Params) {
 
               {section.figure && (
                 <figure className={styles.figure}>
-                  <div className={styles.figureWrap}>
+                  <div
+                    className={`${styles.figureWrap} ${
+                      section.figure.contain ? styles.figureWrapContain : ''
+                    }`}
+                  >
                     <Image
                       src={section.figure.src}
                       alt={section.figure.alt}

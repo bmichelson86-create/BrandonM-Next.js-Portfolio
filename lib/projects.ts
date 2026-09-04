@@ -4,6 +4,8 @@ export type TiltCard = {
   label: string;
   overlayTitle: string;
   overlayBody: string;
+  /** Show on a light panel, contained — for transparent logo artwork. */
+  contain?: boolean;
 };
 
 export type Project = {
@@ -140,6 +142,7 @@ export const projects: Project[] = [
       {
         image: '/images/brand-system.webp',
         alt: 'Bearded Threads brand identity system showing logo, typography, and color palette',
+        contain: true,
         label: 'Identity System',
         overlayTitle: 'Identity System',
         overlayBody:
