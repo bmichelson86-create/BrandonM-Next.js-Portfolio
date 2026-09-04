@@ -16,7 +16,9 @@ type Props = {
   children?: ReactNode;
 };
 
-const MAX_TILT = 12;
+/* Matches initTiltCards() in the original script.js: 15 degrees, no scale,
+   0.3s in / 0.5s out. */
+const MAX_ROTATION = 15;
 
 export default function TiltCard({
   image,
@@ -36,14 +38,14 @@ export default function TiltCard({
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
     const rect = cardRef.current!.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    // Mouse position relative to centre, -1..1
+    const mouseX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    const mouseY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
 
     gsap.to(innerRef.current, {
-      rotateY: px * MAX_TILT * 2,
-      rotateX: -py * MAX_TILT * 2,
-      scale: 1.03,
-      duration: 0.4,
+      rotationY: mouseX * MAX_ROTATION,
+      rotationX: -mouseY * MAX_ROTATION,
+      duration: 0.3,
       ease: 'power2.out',
       transformPerspective: 1000,
     });
@@ -51,11 +53,10 @@ export default function TiltCard({
 
   const onLeave = contextSafe(() => {
     gsap.to(innerRef.current, {
-      rotateY: 0,
-      rotateX: 0,
-      scale: 1,
-      duration: 0.6,
-      ease: 'power3.out',
+      rotationY: 0,
+      rotationX: 0,
+      duration: 0.5,
+      ease: 'power2.out',
     });
   });
 
