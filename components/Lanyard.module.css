@@ -1,0 +1,164 @@
+.container {
+    opacity: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-origin: top center;
+    padding-top: 80px;
+    will-change: transform;
+}
+
+.container.dragging {
+    z-index: 100;
+}
+
+.container.dragging .card {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+}
+
+.string {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: top center;
+    width: 4px;
+    height: 60px;
+    background: linear-gradient(to bottom,
+            var(--accent) 0%,
+            var(--accent-dim) 40%,
+            #3a3a3a 100%);
+    border-radius: 2px;
+    z-index: 1;
+    transition: box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.string::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(to bottom,
+            transparent 0px,
+            transparent 3px,
+            rgba(255, 255, 255, 0.1) 3px,
+            rgba(255, 255, 255, 0.1) 4px);
+    border-radius: 2px;
+}
+
+.string::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle at 30% 30%, #666, var(--accent) 60%, var(--accent-dim));
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px var(--accent-glow),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--accent-dim);
+}
+
+.container.dragging .string {
+    box-shadow:
+        0 0 20px var(--accent-glow),
+        0 0 40px rgba(233, 69, 96, 0.2);
+}
+
+.clip {
+    position: absolute;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clipTop {
+    width: 22px;
+    height: 10px;
+    background: linear-gradient(to bottom, #5a5a5a 0%, #3a3a3a 50%, #2a2a2a 100%);
+    border-radius: 3px 3px 0 0;
+    border: 1px solid #666;
+    border-bottom: none;
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.clipRing {
+    width: 18px;
+    height: 18px;
+    border: 3px solid #4a4a4a;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+    position: relative;
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.clipRing::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 10px;
+    background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+    border-radius: 1px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+    position: relative;
+    transform-origin: top center;
+    transition: filter 0.3s var(--ease-out);
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.hole {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    background: var(--black);
+    border: 2px solid var(--mid-gray);
+    border-radius: 50%;
+    z-index: 3;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.8),
+        0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.badge {
+    width: clamp(280px, 25vw, 400px);
+    height: clamp(350px, 32vw, 500px);
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .container {
+        opacity: 1;
+    }
+}

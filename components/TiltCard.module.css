@@ -1,0 +1,181 @@
+.tiltCard {
+    perspective: 1000px;
+    cursor: pointer;
+    outline: none;
+}
+
+.inner {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--dark-gray);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    transform-style: preserve-3d;
+    transform: translate3d(0, 0, 0);
+}
+
+.tiltCard:hover .inner,
+.tiltCard:focus-visible .inner {
+    border-color: rgba(233, 69, 96, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.image {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out);
+}
+
+.tiltCard:hover .image img {
+    transform: scale(1.06);
+}
+
+.label {
+    display: block;
+    padding: 10px 14px;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out);
+}
+
+.tiltCard:hover .overlay,
+.tiltCard:focus-visible .overlay {
+    opacity: 1;
+}
+
+.overlay h4 {
+    font-size: 0.95rem;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+.overlay p {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: var(--text-light);
+}
+
+/* ---- RDR2 data pillars ---- */
+.pillar {
+    padding: 18px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pillarHeader {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.pillarMetric {
+    font-family: var(--font-heading);
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--white);
+}
+
+.pillarDetail {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.barRow {
+    display: grid;
+    grid-template-columns: 64px 1fr 36px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.barLabel {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.barTrack {
+    height: 4px;
+    background: var(--mid-gray);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.barFill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.barFillLow {
+    background: #4a4a4a;
+}
+
+.barValue {
+    font-size: 0.68rem;
+    color: var(--text-light);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.directiveList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.directiveList li {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.directiveTag {
+    font-family: var(--font-heading);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(233, 69, 96, 0.15);
+    color: var(--accent);
+    flex-shrink: 0;
+}

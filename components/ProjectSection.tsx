@@ -1,0 +1,271 @@
+'use client';
+
+import { useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, ExternalLink } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import type { Project } from '@/lib/projects';
+import TiltCard, { PillarMetric, PillarGraph, PillarList } from './TiltCard';
+import styles from './ProjectSection.module.css';
+
+export default function ProjectSection({ project }: { project: Project }) {
+  const root = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const mainCardRef = useRef<HTMLDivElement>(null);
+  const tiltRef = useRef<HTMLDivElement>(null);
+  const expandTl = useRef<gsap.core.Timeline | null>(null);
+  const [expanded, setExpanded] = useState(false);
+
+  const isRdr2 = project.slug === 'rdr2';
+
+  useGSAP(
+    () => {
+      const video = videoRef.current;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ---- background video: play only while in view ----
+      if (video) {
+        if (project.scrubVideo) {
+          // Scrub playback position against scroll instead of autoplaying.
+          // Duration is read inside onUpdate rather than gated behind a
+          // loadedmetadata listener, so the trigger is always created inside
+          // the GSAP context and gets cleaned up with it.
+          //
+          // The source must be encoded with a dense keyframe interval or
+          // seeking snaps back to the nearest keyframe and the video appears
+          // stuck. RDR2-Merged-video.mp4 is all-intra for this reason.
+          ScrollTrigger.create({
+            trigger: root.current,
+            // Span only the stretch where the section actually holds the
+            // screen, so the clip runs while it is being read rather than
+            // finishing on the way in.
+            start: 'top 80%',
+            end: 'bottom 20%',
+            scrub: 0.5,
+            onUpdate: (self) => {
+              const d = video.duration;
+              if (!d || Number.isNaN(d)) return;
+              video.currentTime = Math.min(d * self.progress, d - 0.05);
+            },
+          });
+        } else {
+          ScrollTrigger.create({
+            trigger: root.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            onToggle: (self) => {
+              if (self.isActive) video.play().catch(() => {});
+              else video.pause();
+            },
+          });
+        }
+
+        // Fade the video in as the section arrives
+        gsap.fromTo(
+          video,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: root.current, start: 'top 85%' },
+          }
+        );
+      }
+
+      if (reduced) return;
+
+      // ---- Figma-style slide-in on the main card ----
+      gsap.from(mainCardRef.current, {
+        x: -100,
+        opacity: 0,
+        scale: 0.95,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'center center',
+          scrub: 1,
+        },
+      });
+
+      // ---- click-to-expand, responsive ----
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 768px)', () => {
+        expandTl.current = gsap
+          .timeline({ paused: true })
+          .to(mainCardRef.current, { xPercent: -80, duration: 0.6, ease: 'power2.out' }, 0)
+          .to(
+            tiltRef.current,
+            { xPercent: 80, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' },
+            0
+          )
+          .from(
+            tiltRef.current!.children,
+            { x: -20, opacity: 0, duration: 0.4, ease: 'power2.out', stagger: 0.1 },
+            0.2
+          );
+      });
+
+      mm.add('(max-width: 767px)', () => {
+        expandTl.current = gsap
+          .timeline({ paused: true })
+          .to(mainCardRef.current, { scale: 0.92, y: -20, duration: 0.5, ease: 'power2.out' }, 0)
+          .to(
+            tiltRef.current,
+            { y: 24, opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
+            0
+          );
+      });
+
+      return () => mm.revert();
+    },
+    { scope: root, dependencies: [project.slug] }
+  );
+
+  const toggle = () => {
+    const tl = expandTl.current;
+    if (!tl) return;
+    expanded ? tl.reverse() : tl.play();
+    setExpanded(!expanded);
+  };
+
+  const rdr2Pillars = [<PillarMetric key="m" />, <PillarGraph key="g" />, <PillarList key="l" />];
+
+  return (
+    <section
+      className={`${styles.section} ${expanded ? styles.expanded : ''}`}
+      ref={root}
+      data-project={project.slug}
+      onClick={(e) => {
+        if (expanded && e.target === e.currentTarget) toggle();
+      }}
+    >
+      {isRdr2 ? (
+        <div className={styles.videoWrapContain}>
+          <video
+            ref={videoRef}
+            className={styles.videoContain}
+            muted
+            playsInline
+            preload="metadata"
+            poster={project.poster}
+            aria-hidden="true"
+          >
+            <source src={project.bgVideo} type="video/mp4" />
+          </video>
+        </div>
+      ) : (
+        <video
+          ref={videoRef}
+          className={styles.bgVideo}
+          style={
+            project.bgBrightness !== undefined
+              ? { filter: `brightness(${project.bgBrightness})` }
+              : undefined
+          }
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster={project.poster}
+          aria-hidden="true"
+        >
+          <source src={project.bgVideo} type="video/mp4" />
+        </video>
+      )}
+
+      <div className={styles.grid}>
+        <div
+          className={styles.mainCard}
+          ref={mainCardRef}
+          onClick={toggle}
+          role="button"
+          tabIndex={0}
+          aria-expanded={expanded}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggle();
+            }
+          }}
+        >
+          <div className={styles.mainCardImage}>
+            <Image
+              src={project.mainImage}
+              alt={project.mainImageAlt}
+              width={1600}
+              height={800}
+              sizes="(max-width: 767px) 100vw, 600px"
+              priority={project.order === 0}
+            />
+          </div>
+
+          <span className={styles.category}>{project.category}</span>
+          <h3 className={styles.title}>{project.title}</h3>
+          <p className={styles.description}>{project.description}</p>
+
+          <div className={styles.tech}>
+            {project.tech.map((t) => (
+              <span className={styles.techTag} key={t}>
+                {t}
+              </span>
+            ))}
+          </div>
+
+          <div className={styles.links} onClick={(e) => e.stopPropagation()}>
+            {project.hasCaseStudy && (
+              <Link href={`/work/${project.slug}`} className={styles.link}>
+                <span>View Project</span>
+                <ArrowRight size={15} strokeWidth={2.5} />
+              </Link>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                className={styles.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Live Site</span>
+                <ExternalLink size={13} strokeWidth={2.5} />
+              </a>
+            )}
+          </div>
+
+          <span className={styles.hint}>
+            {expanded ? 'Click to collapse' : 'Click to expand'}
+          </span>
+        </div>
+
+        <div className={styles.tiltContainer} ref={tiltRef}>
+          {project.tiltCards.map((card, i) =>
+            isRdr2 ? (
+              <TiltCard
+                key={card.label}
+                label={card.label}
+                overlayTitle={card.overlayTitle}
+                overlayBody={card.overlayBody}
+              >
+                {rdr2Pillars[i]}
+              </TiltCard>
+            ) : (
+              <TiltCard
+                key={card.label}
+                image={card.image}
+                alt={card.alt}
+                label={card.label}
+                overlayTitle={card.overlayTitle}
+                overlayBody={card.overlayBody}
+              />
+            )
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,187 @@
+.hero {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: calc(var(--header-height) + 40px) var(--container-padding) 80px;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(40px, 8vw, 100px);
+    max-width: var(--container-max);
+    width: 100%;
+}
+
+.imageWrapper {
+    flex-shrink: 0;
+}
+
+.content {
+    max-width: 700px;
+}
+
+.label {
+    font-family: var(--font-heading);
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-bottom: 8px;
+}
+
+.nameSvg {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    overflow: visible;
+    display: block;
+    margin-inline: auto;
+}
+
+.nameText {
+    font-family: var(--font-heading);
+    font-size: 72px;
+    text-anchor: middle;
+    font-weight: 700;
+    fill: transparent;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+.nameFirst {
+    stroke: var(--white);
+}
+
+.nameLast {
+    stroke: var(--accent);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+/* ---- CTA ---- */
+.cta {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--accent);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: background 0.4s var(--ease-out),
+        transform 0.4s var(--ease-out),
+        box-shadow 0.4s var(--ease-out);
+}
+
+.cta:hover {
+    background: var(--accent-dim);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px var(--accent-glow);
+}
+
+.ctaLabel {
+    display: inline-flex;
+}
+
+.ctaChar {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform;
+}
+
+.cta svg {
+    transition: transform 0.3s ease;
+}
+
+.cta:hover svg {
+    transform: translateY(4px);
+}
+
+/* ---- scroll indicator ---- */
+.scrollIndicator {
+    position: absolute;
+    z-index: 1;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.scrollLine {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .subtitle {
+        margin-inline: auto;
+    }
+}
+
+/* The GSAP intro fades these in from 0. Without the preloader covering the
+   first paint they would flash at full opacity before hydration, so they start
+   hidden here and the timeline takes over. */
+.label,
+.subtitle,
+.cta,
+.scrollIndicator {
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .label,
+    .subtitle,
+    .cta,
+    .scrollIndicator {
+        opacity: 1;
+    }
+
+    .nameText {
+        stroke-dashoffset: 0;
+        fill: currentColor;
+    }
+}
