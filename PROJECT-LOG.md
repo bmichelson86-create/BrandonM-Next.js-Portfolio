@@ -79,9 +79,10 @@ Copied from the original, then optimized:
 | | Before | After |
 |---|---|---|
 | Images | 19 MB (PNG/JPG) | 1.2 MB (WebP) |
-| Video | 14 MB | ~9.7 MB (H.264, re-encoded) |
+| Video | 14 MB | ~6.6 MB (H.264, re-encoded) |
 
-RDR2's video is deliberately larger (3.9 MB) because it is all-intra — see §7.
+Total video ~6.6 MB. (An earlier revision inflated RDR2 to 3.9 MB for
+scroll-scrubbing; that effect was wrong and has been removed — see §7.5.)
 
 ## 7. Bugs found and fixed
 
@@ -102,19 +103,42 @@ RDR2's video is deliberately larger (3.9 MB) because it is all-intra — see §7
    SVG in `components/BrandIcons.tsx`.
 4. **lottie-react v3 API change.** `animationData` → `src`. (Later removed
    entirely.)
-5. **RDR2 video appeared stuck.** Scrubbing seeks `currentTime`, and seeks can
-   only land on keyframes. Verified with ffprobe:
-   - **Original source file: 2 keyframes / 188 frames.** Scrubbing would have
-     been janky on the old vanilla site too — this was a pre-existing problem,
-     not purely self-inflicted.
-   - The `-crf 28 -preset slow` re-encode made it worse: **1 keyframe**.
-   - Now re-encoded all-intra (`-g 1`): **188 keyframes / 188 frames**, i.e.
-     every frame seekable. Cost: 224 KB → 3.9 MB, unavoidable for scrubbing.
+5. **RDR2 video — I had replaced the effect, not ported it.** *(Corrected
+   after Brandon asked for a direct comparison against the original.)*
 
-   Also moved the trigger registration inside the GSAP context (it was leaking)
-   and retimed the range to `top 80% → bottom 20%` so the clip plays while the
-   section holds the screen. This is the first version where the effect
-   actually works properly.
+   The original does **not** scrub. `currentTime` is never touched on it
+   anywhere in the old `script.js`. Two layers were wrong:
+
+   - **Layer 1 — invented effect.** I built scroll-scrubbed playback (frame
+     tied to scroll position). The original plays once at natural speed. All
+     the keyframe work (2 → 1 → 188 keyframes, 224 KB → 3.9 MB) existed only to
+     serve a scrub that should never have been there. Removing it fixed the
+     rate.
+   - **Layer 2 — found only by measuring.** The ported logic still did not
+     match. Instrumenting both pages showed the original begins playback
+     **503 ms before** the subtitle cue crosses the viewport top — so the
+     1.5 s timer is not what starts it. The video tag carries `autoplay`
+     (`index.html:230`), and Chrome defers muted autoplay until the element is
+     visible. The browser starts the clip; the ScrollTrigger code is really
+     pause/resume around it. Adding `autoPlay` closed the gap.
+
+   **Verified side by side**, original served locally vs. the new build:
+
+   | | OLD | NEW |
+   |---|---|---|
+   | Section visible → playback start | 7 ms | 6 ms |
+   | `currentTime` @ 1.5 s intervals | 2.00 / 3.52 / 5.04 / 6.27 | 1.89 / 3.40 / 4.91 / 6.27 |
+   | End state | 6.27, paused | 6.27, paused |
+
+   Video re-encoded back to **281 KB** (normal GOP) — nothing seeks, so dense
+   keyframes are pointless. Implemented as `playAfterScrollPast` in
+   `lib/projects.ts`.
+
+   **Retracted:** the earlier claims that this was "self-inflicted damage" and
+   that the all-intra version was "the first where the effect actually works."
+   Both wrong. The original worked; the keyframe count was irrelevant to it;
+   I spent that effort debugging a problem I had introduced.
+
 6. **Stale dev server.** A `next start` process survived `pkill` and served a
    stale build, causing a JS chunk to 500 and the page to never hydrate.
    Diagnosed as environment, not code.
@@ -183,8 +207,8 @@ Checked on 2026-09-03 by running the commands, not from recollection:
 | Claim | Method | Result |
 |---|---|---|
 | No git repo (at time of audit) | `git status`, `ls -d .git` | Confirmed none; repo since created, commit `0ba3665` |
-| RDR2 now all-intra | `ffprobe` keyframe count | 188 / 188 frames |
-| RDR2 original was poor | `ffprobe` on untouched source | 2 keyframes — see §7.5 correction |
+| RDR2 matches the original | Instrumented both pages, side by side | 6 ms vs 7 ms to start; identical playback curve |
+| RDR2 file size | `ls` | 281 KB (all-intra experiment reverted) |
 | Fix 1 in code | `SmoothScroll.tsx:63` | `firstRender` guard present |
 | Fix 2 in code | `StaggeredMenu.tsx:46` | `{ xPercent: 100, x: 0 }` present |
 | Fix 3 in code | `BrandIcons.tsx` | Both icons exported; lucide imports cleaned |

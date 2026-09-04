@@ -23,8 +23,12 @@ export type Project = {
   tiltCards: TiltCard[];
   /** When false, the project links out instead of to an internal case study */
   hasCaseStudy: boolean;
-  /** Scrub the background video against scroll position instead of autoplaying */
-  scrubVideo?: boolean;
+  /**
+   * Plays the background video once at natural speed, starting `delayMs` after
+   * the viewer scrolls past `selector`. Ports initRdr2Video() from the original
+   * site — playback is time-based, not tied to scroll position.
+   */
+  playAfterScrollPast?: { selector: string; delayMs: number };
   /**
    * Overrides the default 0.4 brightness on the background video. Footage from
    * a light-coloured source needs to sit lower to match the dark sections.
@@ -90,7 +94,7 @@ export const projects: Project[] = [
     mainImage: '/images/rdr2-tilt-card.webp',
     mainImageAlt: 'Red Dead Redemption 2 cinematic silhouette scene',
     hasCaseStudy: true,
-    scrubVideo: true,
+    playAfterScrollPast: { selector: '#projects-subtitle', delayMs: 1500 },
     tiltCards: [
       {
         image: '',

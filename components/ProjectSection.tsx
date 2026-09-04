@@ -17,6 +17,8 @@ export default function ProjectSection({ project }: { project: Project }) {
   const mainCardRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
   const expandTl = useRef<gsap.core.Timeline | null>(null);
+  const playTimeout = useRef<number | null>(null);
+  const hasTriggered = useRef(false);
   const [expanded, setExpanded] = useState(false);
 
   const isRdr2 = project.slug === 'rdr2';
@@ -28,27 +30,53 @@ export default function ProjectSection({ project }: { project: Project }) {
 
       // ---- background video: play only while in view ----
       if (video) {
-        if (project.scrubVideo) {
-          // Scrub playback position against scroll instead of autoplaying.
-          // Duration is read inside onUpdate rather than gated behind a
-          // loadedmetadata listener, so the trigger is always created inside
-          // the GSAP context and gets cleaned up with it.
-          //
-          // The source must be encoded with a dense keyframe interval or
-          // seeking snaps back to the nearest keyframe and the video appears
-          // stuck. RDR2-Merged-video.mp4 is all-intra for this reason.
+        const timed = project.playAfterScrollPast;
+
+        if (timed) {
+          // Port of initRdr2Video() from the original site: the clip plays once
+          // at natural speed on a delay after the viewer scrolls past a cue
+          // element, then pauses and resumes with section visibility. Playback
+          // is time-based — deliberately NOT tied to scroll position.
+          const cue = document.querySelector(timed.selector);
+          const play = () => video.play().catch(() => {});
+          const clear = () => {
+            if (playTimeout.current !== null) {
+              window.clearTimeout(playTimeout.current);
+              playTimeout.current = null;
+            }
+          };
+
+          if (cue) {
+            ScrollTrigger.create({
+              trigger: cue,
+              start: 'bottom top',
+              onEnter: () => {
+                if (hasTriggered.current) return;
+                hasTriggered.current = true;
+                playTimeout.current = window.setTimeout(() => {
+                  playTimeout.current = null;
+                  play();
+                }, timed.delayMs);
+              },
+            });
+          }
+
+          const resume = () => {
+            if (hasTriggered.current && playTimeout.current === null) play();
+          };
           ScrollTrigger.create({
             trigger: root.current,
-            // Span only the stretch where the section actually holds the
-            // screen, so the clip runs while it is being read rather than
-            // finishing on the way in.
-            start: 'top 80%',
-            end: 'bottom 20%',
-            scrub: 0.5,
-            onUpdate: (self) => {
-              const d = video.duration;
-              if (!d || Number.isNaN(d)) return;
-              video.currentTime = Math.min(d * self.progress, d - 0.05);
+            start: 'top bottom',
+            end: 'bottom top',
+            onEnter: resume,
+            onEnterBack: resume,
+            onLeave: () => {
+              clear();
+              video.pause();
+            },
+            onLeaveBack: () => {
+              clear();
+              video.pause();
             },
           });
         } else {
@@ -122,7 +150,10 @@ export default function ProjectSection({ project }: { project: Project }) {
           );
       });
 
-      return () => mm.revert();
+      return () => {
+        if (playTimeout.current !== null) window.clearTimeout(playTimeout.current);
+        mm.revert();
+      };
     },
     { scope: root, dependencies: [project.slug] }
   );
@@ -150,6 +181,12 @@ export default function ProjectSection({ project }: { project: Project }) {
           <video
             ref={videoRef}
             className={styles.videoContain}
+            /* Matches index.html:230. Chrome defers muted autoplay until the
+               element is visible, so the browser is what actually starts this
+               clip as the section scrolls in; the ScrollTrigger logic below
+               layers pause/resume on top. Without this the clip only ever
+               starts via the delayed timer, which is not the original. */
+            autoPlay
             muted
             playsInline
             preload="metadata"

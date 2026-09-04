@@ -26,7 +26,7 @@ export default function Home() {
           <Reveal className={projectStyles.projectsHeader} stagger>
             <span className="sectionNumber">01</span>
             <h2 className="sectionTitle">Featured Projects</h2>
-            <p className="sectionSubtitle">
+            <p className="sectionSubtitle" id="projects-subtitle">
               A selection of recent work showcasing design and development
               expertise.
             </p>
