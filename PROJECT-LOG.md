@@ -154,8 +154,10 @@ only three of the four signature effects remain.
 
   Write answers into that section's `paragraphs` in `lib/caseStudies.ts`, then
   delete its `todo` field.
-- **No git repo.** Confirmed by running `git status` (`fatal: not a git
-  repository`) — no `.git` directory exists. Not yet deployed.
+- **Git initialized 2026-09-03.** Initial commit `0ba3665` on branch `master`,
+  68 files, working tree clean. `node_modules` and `.next` correctly ignored.
+  Branch is `master`, not `main` — rename if you want the modern default.
+  No remote configured; not yet deployed.
 - Contact form posts to Web3Forms with a public access key. Works as-is; could
   move to a Server Action.
 
@@ -180,7 +182,7 @@ Checked on 2026-09-03 by running the commands, not from recollection:
 
 | Claim | Method | Result |
 |---|---|---|
-| No git repo | `git status`, `ls -d .git` | Confirmed — none |
+| No git repo (at time of audit) | `git status`, `ls -d .git` | Confirmed none; repo since created, commit `0ba3665` |
 | RDR2 now all-intra | `ffprobe` keyframe count | 188 / 188 frames |
 | RDR2 original was poor | `ffprobe` on untouched source | 2 keyframes — see §7.5 correction |
 | Fix 1 in code | `SmoothScroll.tsx:63` | `firstRender` guard present |
