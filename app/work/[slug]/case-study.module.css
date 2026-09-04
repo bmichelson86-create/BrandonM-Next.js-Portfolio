@@ -207,7 +207,10 @@
 
 .figureWrapContainDark img {
     object-fit: contain;
-    height: 100%;
+    /* Same fixed height as a cropped figure — a percentage does not resolve
+       against a centred grid area, which let the box grow past its row. */
+    height: clamp(300px, 40vw, 500px);
+    width: 100%;
 }
 
 .caption {
