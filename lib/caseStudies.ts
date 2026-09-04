@@ -4,7 +4,17 @@ export type CaseSection = {
   num: string;
   title: string;
   paragraphs: string[];
-  figure?: { src: string; alt: string; caption: string; contain?: boolean };
+  figure?: {
+    src: string;
+    alt: string;
+    caption: string;
+    /**
+     * Fit the whole image inside the figure box instead of cropping it.
+     * 'light' for transparent artwork that needs a pale panel behind it;
+     * 'dark' for wide screenshots that would otherwise have text cropped off.
+     */
+    contain?: 'light' | 'dark';
+  };
   list?: string[];
   /**
    * Placeholder prompts for copy only Brandon can write. These render as a
@@ -127,7 +137,7 @@ export const caseStudies: Record<string, CaseStudy> = {
           "The interface is built on a dark foundation that allows video and photography to take the lead. Typography is simple and intentional — large type for impact, restrained supporting text for clarity. Nothing competes for attention.",
           "Layout layering was handled carefully. Video, overlays, navigation, and interactive elements needed to live together without creating visual noise. Subtle overlap creates depth, but the screen always feels controlled and readable.",
         ],
-        figure: { src: "/images/djbc-pillar-system.webp", alt: "DJ Big Cali website UI showing dark-mode typography hierarchy and content layout", caption: "Dark-mode content hierarchy engineered for media layering, stat highlighting, and high-contrast readability." },
+        figure: { src: "/images/djbc-pillar-system.webp", alt: "DJ Big Cali website UI showing dark-mode typography hierarchy and content layout", caption: "Dark-mode content hierarchy engineered for media layering, stat highlighting, and high-contrast readability." , contain: 'dark' },
       },
       {
         num: "03",
@@ -177,7 +187,7 @@ export const caseStudies: Record<string, CaseStudy> = {
           "The identity system was designed for versatility across digital and physical touchpoints. The primary logo uses a bold, geometric wordmark that reads clearly at any scale — from favicon to storefront signage. A secondary icon mark provides flexibility for social media profiles, product tags, and packaging embossments.",
           "The color hierarchy anchors the brand in deep, earthy tones with strategic accent colors that drive attention to calls-to-action and key product features. This system ensures consistent cross-platform brand recognition whether a customer encounters Bearded Threads on Instagram, the Shopify store, or a physical product tag.",
         ],
-        figure: { src: "/images/brand-system.webp", alt: "Bearded Threads brand identity system showing logo variations, typography, and color palette", caption: "Complete brand identity system including primary and secondary logo marks, typography hierarchy, and color palette." , contain: true },
+        figure: { src: "/images/brand-system.webp", alt: "Bearded Threads brand identity system showing logo variations, typography, and color palette", caption: "Complete brand identity system including primary and secondary logo marks, typography hierarchy, and color palette." , contain: 'light' },
       },
       {
         num: "03",

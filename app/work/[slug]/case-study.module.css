@@ -174,21 +174,40 @@
     border: 1px solid var(--border);
 }
 
+/* Ports .case-study-image--cover: every figure is the same fixed height and
+   crops to fill, so figures stay uniform whatever the source aspect ratio. */
 .figureWrap img {
     width: 100%;
-    height: auto;
+    height: clamp(300px, 40vw, 500px);
+    object-fit: cover;
 }
 
 /* Ports .case-study-image-wrapper--contain / .case-study-image--contain:
    a light panel for transparent logo artwork that would be black-on-black. */
-.figureWrapContain {
+.figureWrapContainLight {
     background-color: #f5f5f5;
     padding: 20px;
 }
 
-.figureWrapContain img {
+.figureWrapContainLight img {
     object-fit: contain;
+    height: auto;
     max-height: 500px;
+}
+
+/* Wide screenshots: keep the figure box the same height as its neighbours,
+   but fit the whole image rather than cropping words off the edge. */
+.figureWrapContainDark {
+    background-color: #0d0d0d;
+    display: grid;
+    place-items: center;
+    /* Same box height as a cropped figure, so the row of figures stays even */
+    height: clamp(300px, 40vw, 500px);
+}
+
+.figureWrapContainDark img {
+    object-fit: contain;
+    height: 100%;
 }
 
 .caption {

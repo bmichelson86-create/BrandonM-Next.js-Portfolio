@@ -94,9 +94,13 @@ export default async function CaseStudyPage({ params }: Params) {
               {section.figure && (
                 <figure className={styles.figure}>
                   <div
-                    className={`${styles.figureWrap} ${
-                      section.figure.contain ? styles.figureWrapContain : ''
-                    }`}
+                    className={[
+                      styles.figureWrap,
+                      section.figure.contain === 'light' && styles.figureWrapContainLight,
+                      section.figure.contain === 'dark' && styles.figureWrapContainDark,
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
                   >
                     <Image
                       src={section.figure.src}
