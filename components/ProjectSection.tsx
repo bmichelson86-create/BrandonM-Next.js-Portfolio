@@ -145,13 +145,23 @@ export default function ProjectSection({ project }: { project: Project }) {
       });
 
       mm.add('(max-width: 767px)', () => {
+        // Phones stack instead of sliding apart: the tilt container has its
+        // own grid row at this width and opens from height 0. Expanding
+        // changes document height, so ScrollTrigger has to re-measure or
+        // every trigger below this section drifts.
+        const refresh = () => ScrollTrigger.refresh();
+
         expandTl.current = gsap
-          .timeline({ paused: true })
-          .to(mainCardRef.current, { scale: 0.92, y: -20, duration: 0.5, ease: 'power2.out' }, 0)
+          .timeline({ paused: true, onComplete: refresh, onReverseComplete: refresh })
           .to(
             tiltRef.current,
-            { y: 24, opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
+            { height: 'auto', opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
             0
+          )
+          .from(
+            tiltRef.current!.children,
+            { y: 16, opacity: 0, duration: 0.35, ease: 'power2.out', stagger: 0.08 },
+            0.15
           );
       });
 

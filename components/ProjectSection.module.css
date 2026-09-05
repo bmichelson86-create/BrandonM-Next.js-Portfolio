@@ -249,7 +249,22 @@
 }
 
 @media (max-width: 767px) {
+    /* On a phone there is no room to slide the card and the tilt cards apart
+       horizontally, so sharing one grid cell (the desktop trick) left the
+       tilt cards stacked behind the card at a lower z-index. Give each its
+       own row and open the container's height instead. */
+    .mainCard {
+        grid-area: auto;
+    }
+
     .tiltContainer {
+        grid-area: auto;
         max-width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .expanded .tiltContainer {
+        margin-top: 1.25rem;
     }
 }
