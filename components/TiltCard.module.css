@@ -78,6 +78,14 @@
     opacity: 1;
 }
 
+/* Touch devices get no hover, which left this copy unreachable. Tapping the
+   card focuses it, so bind the reveal to plain :focus there as well. */
+@media (hover: none) {
+    .tiltCard:focus .overlay {
+        opacity: 1;
+    }
+}
+
 .overlay h4 {
     font-size: 0.95rem;
     color: var(--accent);

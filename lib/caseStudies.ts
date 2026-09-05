@@ -34,23 +34,19 @@ export type CaseStudy = {
 
 export const caseStudies: Record<string, CaseStudy> = {
   "biddle-shaw": {
-    label: "Client Work / Insurance Brokerage",
+    label: "Spec Project / Insurance Brokerage",
     title: "Biddle-Shaw Insurance",
-    intro: "A production site for an independent San Francisco brokerage — built to turn an insurance search into a quote request.",
+    intro: "A self-initiated redesign for an independent San Francisco brokerage, built to turn an insurance search into a quote request.",
     heroImage: "/images/biddle-main-card.webp",
     sections: [
       {
         num: "01",
         title: "The Objective",
         paragraphs: [
-          "Biddle-Shaw is an independent brokerage, not a single-carrier agency — they shop multiple carriers on a client's behalf. That distinction is the entire value proposition, and it is the thing a generic insurance template cannot communicate.",
-          "The site had to do two jobs at once: explain the brokerage model clearly enough that a visitor understands why it benefits them, and get that visitor into a quote request with as little friction as possible.",
-        ],
-        todo: [
-          "What was your actual role? (design only, build only, both; solo or with others)",
-          "How did the engagement come about, and what did the client have before this?",
-          "What did the client specifically ask for, in their words?",
-          "What was the timeline?",
+          "Biddle-Shaw is an independent brokerage. They shop multiple carriers for you instead of selling one company's policies, and that difference is the whole pitch. A stock insurance template doesn't say it for them.",
+          "So the site had two jobs: explain what a brokerage actually does and why it works in your favor, then get you into a quote request without much effort.",
+          "Nobody hired me for this. A family member works at Biddle-Shaw, which is the only reason I ever looked at their site, and biddleshaw.com was clearly old. I ran it through HubSpot's Website Grader and it came back 65 out of 100. Nobody had asked for a redesign, so I offered.",
+          "There was no brief and no deadline. I gave myself about two weeks, designed and built all of it myself, finished early, and showed them. They passed. So this is a spec project: a real business with real constraints, but nothing they ever put live.",
         ],
       },
       {
@@ -62,8 +58,8 @@ export const caseStudies: Record<string, CaseStudy> = {
           caption: "Seven coverage lines, each with its own route, imagery, and dedicated copy.",
         },
         paragraphs: [
-          "Coverage is split across seven lines — auto, home, landlord protection, condo, renters, umbrella, and commercial with workers' comp. Each one lives on its own route rather than as an anchor on a single long page.",
-          "That structure matters for how people actually arrive. Someone searching for renters insurance in San Francisco should land on a page about renters insurance, not on a homepage where they have to hunt. Separate routes also give each line its own metadata and its own entry point from search.",
+          "I split coverage into seven lines: auto, home, landlord protection, condo, renters, umbrella, and commercial with workers' comp. Each one gets its own route instead of an anchor link on one long page.",
+          "The idea was that someone searching for renters insurance in San Francisco should land on a page about renters insurance and not have to go hunting from the homepage. Separate routes also give each line its own metadata and its own way in from search.",
         ],
       },
       {
@@ -75,8 +71,8 @@ export const caseStudies: Record<string, CaseStudy> = {
           caption: "One decision — coverage type — stands between a visitor and a quote request.",
         },
         paragraphs: [
-          "The quote request sits directly beneath the hero and repeats as the visitor moves down the page. It asks for one thing up front: which coverage type. Everything else is deferred until after the visitor has committed to starting.",
-          "Insurance shoppers are comparing several providers in a single sitting. The form is deliberately short because every additional field is another reason to leave and try the next tab instead.",
+          "I put the quote request right under the hero and repeated it further down the page. It asks for one thing to start: which coverage you want. Everything else waits until you've already begun.",
+          "People shopping for insurance are usually comparing a few providers in one sitting. I kept the form short on purpose, since every extra field is one more reason to close the tab and try someone else.",
         ],
       },
       {
@@ -88,30 +84,28 @@ export const caseStudies: Record<string, CaseStudy> = {
           caption: "Named reviews with concrete outcomes, positioned before the final call to action.",
         },
         paragraphs: [
-          "Insurance is a trust purchase, so credibility signals are placed where the decision actually happens rather than buried on an About page. Reviews are named and specific — they cite carriers shopped and dollars saved, not generic praise.",
-          "The independent-brokerage positioning is stated plainly and repeated: they work for the client, not for one carrier. Physical address, direct phone number, and staffed office hours all reinforce that this is a real local business.",
+          "Insurance is a trust purchase, so I put the credibility signals where someone actually decides instead of hiding them on an About page. The reviews are named and specific, and they mention which carriers got shopped and what the person saved.",
+          "The independent-brokerage point gets said plainly and then said again: they work for you, not for one carrier. The address, a direct phone number, and staffed office hours are all there to show it's a real local business.",
         ],
       },
       {
         num: "05",
         title: "Build & Stack",
         paragraphs: [
-          "Built with Next.js and React, styled with Tailwind, and deployed on Vercel. Routing is file-based, which keeps each coverage line a self-contained page that is cheap to add or amend as the brokerage's offering changes.",
-          "Imagery runs through Next.js image optimization, so the lifestyle photography that carries the visual tone is served in modern formats at appropriate sizes rather than as full-resolution originals.",
-        ],
-        todo: [
-          "Any technical constraints worth naming? (existing branding, carrier requirements, content supplied vs. written by you, compliance/disclosure rules)",
+          "Next.js and React, Tailwind for styling, deployed on Vercel. Routing is file-based, so each coverage line stays a self-contained page that's easy to add or change as what they offer changes.",
+          "Images go through Next.js image optimization, so the photography that carries most of the visual weight gets served at sensible sizes in modern formats instead of as full-resolution files.",
+          "I kept the brand colors exactly as they were. The point was to modernize how the business presents itself, not to rebrand a company that hadn't asked me to. Everything else changed: new photography, a cleaner and more current layout, and coverage listings updated to match what they actually sell now, with the lines they've dropped taken out.",
+          "The photography is my own. The coverage details came from my contact at the agency, which is as close to a brief as this ever got. No carrier requirements shaped the build. None came up. I left the original site's disclosure copy alone instead of rewriting it. I wasn't going to draft new compliance language for a redesign nobody had commissioned, and none of this went through a real review.",
         ],
       },
       {
         num: "06",
         title: "Results & Takeaways",
-        paragraphs: [],
-        todo: [
-          "Any measurable outcome? (quote requests before vs. after, traffic, time on page, Lighthouse scores, client feedback)",
-          "What are you most pleased with in this build?",
-          "What would you do differently next time?",
-          "Is the client still using it, and is there ongoing work?",
+        paragraphs: [
+          "The old site scored 65 out of 100 on HubSpot's Website Grader. The rebuild scores 100, with full marks on performance, SEO, mobile, and security. Same tool, same scale, so those two are worth putting side by side. Lighthouse is a tougher test and measures less: mobile performance comes in between 81 and 96 depending on where it's run from. I'd treat that as a separate data point, not part of the before-and-after.",
+          "Both numbers only describe the site itself. Nobody ever reached this version through Biddle-Shaw, so there aren't any quote requests to count or traffic to compare. The scores say the build is solid. They don't say it made anyone any money.",
+          "The 100 is what I'm most pleased with, mostly because the 65 is there to compare it against. Scoring well on its own wouldn't mean much.",
+          "I wouldn't do anything differently. This wasn't built to win the work or keep a client happy, since they passed on it. I built it to find out whether I could learn an unfamiliar framework and actually ship something in it, instead of falling back on the single-file HTML I already knew, with nothing holding the structure together. Most sites run on something like Shopify or Squarespace now anyway. I wanted to close that gap for myself.",
         ],
       },
     ],

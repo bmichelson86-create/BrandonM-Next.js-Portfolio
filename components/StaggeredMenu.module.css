@@ -4,6 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     z-index: 9000;
     pointer-events: none;
     overflow: hidden;
@@ -243,8 +244,12 @@
 }
 
 .socialsLink {
+    display: inline-flex;
+    align-items: center;
     color: var(--text-muted);
     font-size: 0.95rem;
+    /* 24px minimum target (WCAG 2.5.8) */
+    min-height: 24px;
     transition: color 0.25s ease;
 }
 

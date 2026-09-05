@@ -7,6 +7,7 @@
 .section {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,6 +148,30 @@
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
+    /* Above .cardToggle so the links stay clickable through the overlay. */
+    position: relative;
+    z-index: 2;
+}
+
+/* Full-card expand control. Covers the card so the whole surface stays
+   clickable, without making an interactive element that wraps links. */
+.cardToggle {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.cardToggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
 }
 
 .link {
@@ -158,6 +183,8 @@
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--white);
+    /* 24px minimum target (WCAG 2.5.8) */
+    min-height: 24px;
     transition: color 0.3s var(--ease-out);
 }
 
@@ -184,6 +211,7 @@
     color: rgba(255, 255, 255, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 2px;
+    min-height: 24px;
     transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
 }
 

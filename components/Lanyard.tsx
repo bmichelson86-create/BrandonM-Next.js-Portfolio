@@ -219,6 +219,10 @@ export default function Lanyard() {
           loop
           muted
           playsInline
+          /* This is the hero's LCP element. Without a poster nothing paints
+             here until enough of the clip downloads and decodes, which on a
+             throttled connection costs seconds. */
+          poster="/images/posters/lanyard.webp"
           aria-label="Brandon Michelson badge photo"
         >
           <source src="/video/lanyard-photo.mp4" type="video/mp4" />

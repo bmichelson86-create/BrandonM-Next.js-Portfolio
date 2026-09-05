@@ -30,6 +30,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--text-muted);
+    min-height: 24px;
     transition: color 0.3s ease;
 }
 
@@ -117,14 +118,14 @@
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    background: var(--accent);
+    background: var(--accent-dim);
     color: var(--white);
     border-radius: 8px;
     transition: background 0.3s ease, transform 0.3s var(--ease-out);
 }
 
 .liveLink:hover {
-    background: var(--accent-dim);
+    background: var(--accent-deep);
     transform: translateY(-3px);
 }
 

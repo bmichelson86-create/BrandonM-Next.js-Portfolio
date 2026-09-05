@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import type { Project } from '@/lib/projects';
+import { useNearViewport } from '@/lib/useNearViewport';
 import TiltCard, { PillarMetric, PillarGraph, PillarList } from './TiltCard';
 import styles from './ProjectSection.module.css';
 
@@ -22,6 +23,10 @@ export default function ProjectSection({ project }: { project: Project }) {
   const [expanded, setExpanded] = useState(false);
 
   const isRdr2 = project.slug === 'rdr2';
+
+  // Defer the video download until the section is within one viewport of
+  // the reader. Until then the poster frame stands in.
+  const nearViewport = useNearViewport(root);
 
   useGSAP(
     () => {
@@ -190,11 +195,10 @@ export default function ProjectSection({ project }: { project: Project }) {
             muted
             playsInline
             preload="metadata"
+            src={nearViewport ? project.bgVideo : undefined}
             poster={project.poster}
             aria-hidden="true"
-          >
-            <source src={project.bgVideo} type="video/mp4" />
-          </video>
+          />
         </div>
       ) : (
         <video
@@ -209,28 +213,28 @@ export default function ProjectSection({ project }: { project: Project }) {
           muted
           playsInline
           preload="metadata"
+          src={nearViewport ? project.bgVideo : undefined}
           poster={project.poster}
           aria-hidden="true"
-        >
-          <source src={project.bgVideo} type="video/mp4" />
-        </video>
+        />
       )}
 
       <div className={styles.grid}>
-        <div
-          className={styles.mainCard}
-          ref={mainCardRef}
-          onClick={toggle}
-          role="button"
-          tabIndex={0}
-          aria-expanded={expanded}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              toggle();
-            }
-          }}
-        >
+        <div className={styles.mainCard} ref={mainCardRef}>
+          {/* A real button rather than a role="button" div, so the card no
+              longer nests links inside an interactive element. It covers the
+              card and sits beneath .links, which keeps those clickable. */}
+          <button
+            type="button"
+            className={styles.cardToggle}
+            onClick={toggle}
+            aria-expanded={expanded}
+          >
+            <span className="srOnly">
+              {expanded ? `Collapse ${project.title} details` : `Expand ${project.title} details`}
+            </span>
+          </button>
+
           <div className={styles.mainCardImage}>
             <Image
               src={project.mainImage}
@@ -254,7 +258,7 @@ export default function ProjectSection({ project }: { project: Project }) {
             ))}
           </div>
 
-          <div className={styles.links} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.links}>
             {project.hasCaseStudy && (
               <Link href={`/work/${project.slug}`} className={styles.link}>
                 <span>View Project</span>

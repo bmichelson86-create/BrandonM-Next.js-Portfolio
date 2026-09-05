@@ -42,13 +42,14 @@ export const projects: Project[] = [
   {
     slug: 'biddle-shaw',
     order: 0,
-    category: 'Client Work / Insurance Brokerage',
+    category: 'Spec Project / Insurance Brokerage',
     title: 'Biddle-Shaw Insurance',
     description:
-      'A production Next.js site for an independent San Francisco brokerage. Seven coverage lines, an instant-quote flow, and a carrier-comparison story built to convert visitors into quote requests.',
+      'A self-initiated Next.js redesign for an independent San Francisco brokerage. Seven coverage lines, an instant-quote flow, and a carrier-comparison story built to convert visitors into quote requests.',
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Conversion UX'],
     liveUrl: 'https://biddle-shaw-nextjs.vercel.app/',
     bgVideo: '/video/biddle-shaw.mp4',
+    poster: '/images/posters/biddle-shaw.webp',
     // Captured from a white site — needs to sit much darker than the others
     bgBrightness: 0.16,
     mainImage: '/images/biddle-main-card.webp',
@@ -134,6 +135,7 @@ export const projects: Project[] = [
     tech: ['E-Commerce Frontend', 'Brand Identity', 'UX/UI'],
     liveUrl: 'https://bearded-threads-portfolio.vercel.app/',
     bgVideo: '/video/BTCCintro.mp4',
+    poster: '/images/posters/bearded-threads.webp',
     mainImage: '/images/BTCC3darkgrey.webp',
     mainImageAlt:
       'Bearded Threads dark forest road brand imagery showcasing outdoor lifestyle aesthetic',
@@ -176,6 +178,7 @@ export const projects: Project[] = [
     tech: ['Vanilla JS', 'GSAP', 'Lenis', 'Video Optimization'],
     liveUrl: 'https://dj-big-cali-website.vercel.app/',
     bgVideo: '/video/dj-turntable.mp4',
+    poster: '/images/posters/dj-big-cali.webp',
     mainImage: '/images/dj-big-cali.webp',
     mainImageAlt:
       'DJ Big Cali website showing vinyl record with bear mascot and custom branding',
@@ -216,6 +219,7 @@ export const projects: Project[] = [
       'Mobile banking app redesign focused on financial wellness. Built with competitive analysis, journey mapping, and high-fidelity prototypes validated through usability walkthroughs.',
     tech: ['Figma', 'User Research', 'Prototyping', 'Usability Testing'],
     bgVideo: '/video/coco-gradient.mp4',
+    poster: '/images/posters/cococoin.webp',
     mainImage: '/images/coco-main-card.webp',
     mainImageAlt:
       'CocoCoin mobile banking app showing welcome screen, onboarding flow, and financial dashboard',

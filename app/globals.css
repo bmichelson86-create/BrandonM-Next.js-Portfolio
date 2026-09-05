@@ -15,6 +15,10 @@
     --white: #ffffff;
     --accent: #e94560;
     --accent-dim: #b83a4f;
+    /* White on --accent is only 3.82:1, which fails AA for normal-size
+       text. --accent-dim is 5.59:1 and --accent-deep 7.06:1, so solid
+       accent buttons use those two instead. */
+    --accent-deep: #9e3143;
     --accent-glow: rgba(233, 69, 96, 0.4);
 
     /* Typography — supplied by next/font */

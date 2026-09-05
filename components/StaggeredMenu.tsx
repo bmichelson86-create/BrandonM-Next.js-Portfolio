@@ -33,6 +33,9 @@ export default function StaggeredMenu() {
   const headerRef = useRef<HTMLElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
+  // The robot clip only exists inside the open panel, so its download is
+  // deferred until the first open. Latches on: reopening reuses the buffer.
+  const [menuEverOpened, setMenuEverOpened] = useState(false);
   const busy = useRef(false);
   const openTl = useRef<gsap.core.Timeline | null>(null);
 
@@ -71,6 +74,7 @@ export default function StaggeredMenu() {
     if (busy.current) return;
     busy.current = true;
     setIsOpen(true);
+    setMenuEverOpened(true);
     lenis?.stop();
 
     const panel = panelRef.current!;
@@ -277,10 +281,10 @@ export default function StaggeredMenu() {
               muted
               playsInline
               preload="metadata"
+              src={menuEverOpened ? '/video/robot-portfolio.mp4' : undefined}
+              poster="/images/posters/robot.webp"
               aria-hidden="true"
-            >
-              <source src="/video/robot-portfolio.mp4" type="video/mp4" />
-            </video>
+            />
           </div>
 
           <div className={styles.socials} aria-label="Social links">

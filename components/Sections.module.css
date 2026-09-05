@@ -197,6 +197,7 @@
     gap: 12px;
     font-size: 0.9rem;
     color: var(--text-muted);
+    min-height: 24px;
     transition: color 0.3s ease;
     overflow-wrap: anywhere;
 }
@@ -333,6 +334,14 @@
     flex-wrap: wrap;
 }
 
+/* WCAG 2.5.8 wants a 24px minimum target. These are nav links, not prose
+   links, so the inline exception does not apply to them. */
+.footerNav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+}
+
 .footerNav a:hover {
     color: var(--accent);
 }
@@ -341,6 +350,17 @@
     display: flex;
     gap: 18px;
     color: var(--text-muted);
+}
+
+/* Icon-only links: the glyph is 18px, so the anchor needs its own padding to
+   reach a usable target. */
+.footerSocial a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    margin: -10px;
 }
 
 .footerSocial a:hover {
