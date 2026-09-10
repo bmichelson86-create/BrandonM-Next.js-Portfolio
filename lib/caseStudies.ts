@@ -266,25 +266,25 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
   },
   "cococoin": {
-    label: "UX/UI Product Design",
+    label: "TripleTen Capstone / Product Design",
     title: "CocoCoin",
-    intro: "Designing a frictionless mobile banking experience that turns financial anxiety into financial empowerment.",
+    intro: "My TripleTen capstone: a digital wallet designed to make money management feel less hostile.",
     heroImage: "/images/coco-main-card.webp",
     sections: [
       {
         num: "01",
         title: "The Challenge",
         paragraphs: [
-          "Modern banking apps often feel overwhelming, clinical, and difficult to navigate. Users don't abandon financial apps because they lack features — they leave because the features feel hostile. The TripleTen capstone objective was to design a digital wallet and financial tracking application that prioritizes clarity over complexity.",
-          "The core question: How do you make personal finance feel approachable without sacrificing the trust signals users expect from a financial product? The answer required understanding not just what users do in banking apps, but how they feel while doing it — and designing around that emotional reality.",
+          "Most banking apps feel clinical and overwhelming. People don't quit them because a feature is missing, they quit because the features feel hostile. My TripleTen capstone brief was to design a digital wallet and financial tracking app that puts clarity first.",
+          "The question I kept coming back to: how do you make personal finance approachable without losing the trust signals people expect from anything holding their money? That meant paying attention to how someone feels using a banking app, not just what they do in one.",
         ],
       },
       {
         num: "02",
         title: "Research & Discovery",
         paragraphs: [
-          "Due to the two-week project timeline, research was grounded in competitive analysis across five banking and budgeting apps, along with structured user assumption mapping. The goal was to identify recurring friction patterns — where existing products lost users to confusion, friction, or anxiety — before designing a solution.",
-          "Problem framing and journey mapping were completed before moving into high-fidelity design. This ensured the solution addressed real usability gaps rather than aesthetic preferences. The research phase surfaced three core needs: frictionless navigation, goal-oriented saving, and transparent spending insights presented without judgment.",
+          "I had two weeks, so the research is competitive analysis across five banking and budgeting apps plus structured assumption mapping. No user interviews. I wanted to find where existing products lose people to confusion or anxiety before I designed anything.",
+          "I framed the problem and mapped the journey before touching high-fidelity design, so the solution answered usability gaps instead of my own taste. Three needs came out of it: frictionless navigation, goal-oriented saving, and spending insights that don't feel like a scolding.",
         ],
         figure: { src: "/images/coco-pillar-logic.webp", alt: "CocoCoin user flow diagram and research logic mapping", caption: "User journey mapping and logic flows built from interview insights and competitive analysis." },
       },
@@ -292,8 +292,8 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "03",
         title: "Design System",
         paragraphs: [
-          "The visual language needed to balance two competing signals: the institutional trust of a financial product and the warmth of a wellness application. The color system anchors in deep greens and golds — signaling growth and value — with clean white surfaces that let data breathe without overwhelming the user.",
-          "A scalable component system was built to maintain consistency across 40+ screens. Shared spacing, typography, and layout rules reduce design drift and support efficient iteration or developer handoff. Every button, card, and input follows the same structural logic so new features slot in without redesigning existing patterns.",
+          "The visual language had to balance two things that pull apart: the institutional trust of a financial product and the warmth of a wellness app. The color system sits in deep greens and golds for growth and value, on clean white surfaces that give the data room.",
+          "I built a component system so it stays consistent across 40+ screens. Shared spacing, typography, and layout rules keep the design from drifting and make handoff realistic. Every button, card, and input follows the same structure, so a new feature slots in without redrawing what's already there.",
         ],
         figure: { src: "/images/coco-pillar-system.webp", alt: "CocoCoin design system showing typography, color palette, and component library", caption: "Scalable component-based design system balancing financial trust with approachable aesthetics." },
       },
@@ -301,8 +301,8 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "04",
         title: "Cross-Platform Execution",
         paragraphs: [
-          "The high-fidelity prototype spans 40+ screens across mobile and desktop. The mobile experience was designed first — onboarding, account linking, spending dashboards, and goal tracking — then translated to a widescreen desktop environment that uses the additional space for data visualization rather than simply stretching the mobile layout.",
-          "Key interactions were prototyped in Figma with realistic transitions. The onboarding flow guides users from account creation through bank linking to their personalized dashboard in a minimal number of steps, prioritizing progressive disclosure over front-loading complexity.",
+          "The prototype runs to 40+ screens across mobile and desktop. I designed mobile first, onboarding through account linking, spending dashboards, and goal tracking, then took it to a widescreen layout that uses the extra room for data visualization instead of stretching the phone design.",
+          "I prototyped the key interactions in Figma with real transitions. Onboarding moves from account creation through bank linking to a personalized dashboard in as few steps as I could manage, revealing complexity gradually instead of front-loading it.",
         ],
         figure: { src: "/images/coco-pillar-desktop.webp", alt: "CocoCoin desktop dashboard showing financial data visualization and wallet interface", caption: "Mobile-first design translated into a robust widescreen desktop dashboard environment." },
       },
@@ -310,7 +310,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "05",
         title: "Results & Takeaways",
         paragraphs: [
-          "This project reinforced how emotional framing impacts financial UX. The goal was not just to display transactions, but to reduce friction and anxiety around money management. Design decisions focused on clarity, progressive disclosure, and supportive language to create a calmer, more intentional experience.",
+          "It was graded and I passed. That's the whole outcome. Nobody has used CocoCoin to manage actual money, so the calmer, less judgmental framing I designed for is an argument I made, not one I've tested.",
         ],
       },
     ],
