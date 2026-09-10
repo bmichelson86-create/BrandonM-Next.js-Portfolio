@@ -68,7 +68,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         figure: {
           src: "/images/biddle-pillar-quote.webp",
           alt: "Biddle-Shaw instant quote form with a coverage type selector and call to action",
-          caption: "One decision — coverage type — stands between a visitor and a quote request.",
+          caption: "Coverage type is the one decision standing between a visitor and a quote request.",
         },
         paragraphs: [
           "I put the quote request right under the hero and repeated it further down the page. It asks for one thing to start: which coverage you want. Everything else waits until you've already begun.",
