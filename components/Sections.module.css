@@ -346,21 +346,26 @@
     color: var(--accent);
 }
 
+/* The hit areas are much larger than the 18px glyphs, so the row's outer
+   edges get pulled back to keep the icons optically aligned with the text
+   above. That compensation belongs on the row, not on each link: as a
+   per-link margin it also ate the gap between them and left the hit areas
+   overlapping by 2px. */
 .footerSocial {
     display: flex;
-    gap: 18px;
+    gap: 8px;
     color: var(--text-muted);
+    margin: -12px -15px;
 }
 
-/* Icon-only links: the glyph is 18px, so the anchor needs its own padding to
+/* Icon-only links: the glyph is 18px, so the anchor needs its own box to
    reach a usable target. */
 .footerSocial a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-    margin: -10px;
+    min-width: 48px;
+    min-height: 48px;
 }
 
 .footerSocial a:hover {
