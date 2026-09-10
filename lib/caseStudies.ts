@@ -211,56 +211,56 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
   },
   "rdr2": {
-    label: "System Design Analysis",
+    label: "School Project / UX Research",
     title: "Red Dead Redemption 2",
-    intro: "Deconstructing immersion, diegetic interface, and environmental narrative systems.",
+    intro: "A school research project on immersion, diegetic interface, and where the systems fight the story.",
     heroImage: "/images/rdr2-tilt-card.webp",
     sections: [
       {
         num: "01",
         title: "The Objective",
         paragraphs: [
-          "Red Dead Redemption 2 is a masterpiece of narrative, yet player data reveals a critical tension between its cinematic ambitions and its gameplay mechanics. This project is not a UI redesign of Rockstar's aesthetic; it is a forensic breakdown of system friction.",
-          "The goal: Understand exactly where \"immersion\" breaks for the player and propose system-level directives to resolve ludonarrative dissonance.",
+          "Red Dead Redemption 2 tells its story better than almost anything else, and the people I interviewed still got frustrated playing it. That gap is what I wanted to look at. I wasn't redesigning Rockstar's interface, I was trying to find where the systems fight the story.",
+          "This started as a school project. I picked the topic, interviewed players, and worked their feedback into a set of changes I could argue for. The site you're reading it on came later, on my own time, as a test of how far I could get building something like this with AI.",
         ],
       },
       {
         num: "02",
         title: "Research Protocol",
         paragraphs: [
-          "We conducted 10 semi-structured player interviews, mixing qualitative sentiment analysis with quantitative task success and satisfaction metrics. Pain points were categorized into four primary friction buckets based on recurring player frustrations.",
-          "Core research questions focused on: Which story moments felt least satisfying? What systems did players wish existed? How would they redesign the gang's downfall? And critically — where did the interface fight the narrative?",
+          "I ran 10 semi-structured interviews with players, mixing what they said about the game with task success and satisfaction scores. Their frustrations sorted into four buckets.",
+          "I asked which story moments landed worst, what systems they wished existed, how they'd redesign the gang's downfall, and where the interface got in the way of the story.",
         ],
       },
       {
         num: "03",
         title: "Key Findings",
         paragraphs: [
-          "50% of users cited linear mission design as the primary barrier to immersion. Narrative satisfaction scored 90% while interface efficiency scored just 30% — a massive interaction variance that reveals the core tension in the experience.",
-          "The pain categories broke down clearly: Mission Freedom (50%), Clunky Menus (25%), Underused Side Characters (18%), and Visual Clutter (7%). The data pointed to a system where the story excels but the mechanics actively work against it.",
+          "Half the players named linear mission design as the main thing breaking immersion. Narrative satisfaction came in at 90% and interface efficiency at 30%. That spread is the tension the rest of the study is about.",
+          "The categories broke down as Mission Freedom 50%, Clunky Menus 25%, Underused Side Characters 18%, and Visual Clutter 7%. The story carries the game and the mechanics work against it.",
         ],
       },
       {
         num: "04",
         title: "Player Voice",
         paragraphs: [
-          "Players expressed a consistent desire for agency. \"I felt like I was just checking boxes. I wanted more choice in how to finish missions.\" The menu system drew particular frustration: \"Menus were too clunky — I avoided them unless I had to.\"",
-          "Character investment ran deep but left players wanting more: \"Sadie deserved a whole game. Her arc was powerful but way too short.\" And the most telling insight into player desire for narrative control: \"I wish there was a leave the gang early option.\"",
+          "Everyone wanted more agency. \"I felt like I was just checking boxes. I wanted more choice in how to finish missions.\" The menus came up constantly: \"Menus were too clunky, I avoided them unless I had to.\"",
+          "They were invested in the characters and wanted more of them. \"Sadie deserved a whole game. Her arc was powerful but way too short.\" The one that stuck with me most: \"I wish there was a leave the gang early option.\"",
         ],
       },
       {
         num: "05",
         title: "Design Directives",
         paragraphs: [
-          "Based on the research findings, three system-level directives emerged. First: Optimize the satchel taxonomy — use iconography instead of text lists, reduce click-depth for weapon swapping, and implement Quick Access for high-frequency items.",
-          "Second: Expand mission branching logic — introduce optional paths (Stealth vs. Combat vs. Dialogue), add visual cues in the journal for Chosen Path vs. Missed Path, and let player decisions materially impact camp morale and resources. Third: Improve the contextual HUD — add a Remind Me Later feature for side missions, use subtle audio cues instead of intrusive popups, and implement color-coded map markers for Urgent vs. Passive tasks.",
+          "Three directives came out of it. First, fix the satchel: iconography instead of text lists, fewer clicks to swap weapons, and quick access for the items people reach for constantly.",
+          "Second, branch the missions: optional stealth, combat, or dialogue routes, journal cues showing the path taken against the one missed, and decisions that actually move camp morale and resources. Third, calm the HUD: a remind-me-later option for side missions, audio cues instead of popups, and color-coded markers for urgent against passive tasks.",
         ],
       },
       {
         num: "06",
         title: "Results & Takeaways",
         paragraphs: [
-          "This analysis reinforced a core UX principle: immersion is a system, not a feature. When narrative design and interface design are misaligned, players feel the friction — even if they can't articulate exactly why.",
+          "Nothing here reached Rockstar, and it was never meant to. It was a school project: I picked a game I know well, asked ten people what actually frustrated them, and turned the answers into changes I could defend. The site came after, as my own test of building with AI.",
         ],
       },
     ],
