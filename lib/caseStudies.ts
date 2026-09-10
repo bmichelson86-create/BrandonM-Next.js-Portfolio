@@ -111,25 +111,25 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
   },
   "dj-big-cali": {
-    label: "Immersive Digital Experience",
+    label: "Spec Project / Event DJ",
     title: "DJ Big Cali",
-    intro: "Translating live performance energy into a high-performance, motion-driven web presence.",
+    intro: "A spec build for a working event DJ, turning live performance energy into a motion-driven site.",
     heroImage: "/images/dj-big-cali.webp",
     sections: [
       {
         num: "01",
         title: "The Objective",
         paragraphs: [
-          "DJ Big Cali's existing web presence didn't reflect the energy of a live performance. A static template-based layout failed to communicate the scale and professionalism of the events he plays — corporate galas, luxury weddings, and private parties.",
-          "The goal was to build an immersive, performance-aware experience that positions the brand at a higher level. Fullscreen video, intentional scroll pacing, and layered UI — a digital stage that feels as deliberate as the live one.",
+          "DJ Big Cali plays corporate galas, luxury weddings, and private parties. His site didn't look anything like that. It was a static template, and it carried none of the scale.",
+          "Nobody hired me for this. I liked the problem, so I built the site I thought the act deserved: fullscreen video, deliberate scroll pacing, and layered UI. A digital stage.",
         ],
       },
       {
         num: "02",
         title: "UI & Layout System",
         paragraphs: [
-          "The interface is built on a dark foundation that allows video and photography to take the lead. Typography is simple and intentional — large type for impact, restrained supporting text for clarity. Nothing competes for attention.",
-          "Layout layering was handled carefully. Video, overlays, navigation, and interactive elements needed to live together without creating visual noise. Subtle overlap creates depth, but the screen always feels controlled and readable.",
+          "I built the interface on a dark foundation so the video and photography lead. Type is large where it needs impact and quiet everywhere else, so nothing fights for attention.",
+          "Layering took the most work. Video, overlays, navigation, and interactive elements all share the same screen, and they had to do it without turning into noise. A little overlap gives the page depth and it still reads cleanly.",
         ],
         figure: { src: "/images/djbc-pillar-system.webp", alt: "DJ Big Cali website UI showing dark-mode typography hierarchy and content layout", caption: "Dark-mode content hierarchy engineered for media layering, stat highlighting, and high-contrast readability."  },
       },
@@ -137,8 +137,8 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "03",
         title: "Motion & Performance",
         paragraphs: [
-          "Motion was used deliberately — not as decoration, but as pacing. Scroll interactions are restrained and performance-aware, reinforcing the rhythm of a live set while maintaining fluid responsiveness across devices. Every animation earns its frame budget.",
-          "Performance was the constraint that shaped the creativity. Fullscreen background videos were compressed and lazy-loaded. Scroll pacing was controlled using lightweight animation frameworks to preserve fluidity without hijacking browser accessibility. The site feels fast because it is fast — not because it's simple.",
+          "Motion is pacing here, not decoration. The scroll interactions stay restrained and follow the rhythm of a live set, and they hold up across devices.",
+          "Performance shaped most of the creative decisions. I compressed the fullscreen background videos and lazy-loaded them, and I kept the scroll pacing on a lightweight animation library so it stays smooth without hijacking scrolling or accessibility.",
         ],
         figure: { src: "/images/djbc-pillar-energy.webp", alt: "DJ Big Cali turntable interface with high-energy club lighting and motion effects", caption: "GSAP-powered scroll interactions and hardware-accelerated animations capture the energy of a live performance." },
       },
@@ -146,8 +146,8 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "04",
         title: "Professional Identity",
         paragraphs: [
-          "The visual identity needed to communicate trust and polish before a single word was read. Premium event clients — corporate planners, luxury wedding coordinators — make decisions based on perceived professionalism. The cinematic dark aesthetic signals authority without sacrificing the energy that defines the brand.",
-          "Every design decision reinforced the booking funnel. The layout guides visitors from the hero impact moment through credentials and social proof to a clear call-to-action. High-ticket clients scan, evaluate, and decide in seconds. The site is built for that decision speed.",
+          "The identity had to read as professional before anyone read a word. Corporate planners and wedding coordinators judge fast on polish, so the dark cinematic look carries the authority and the motion keeps the energy.",
+          "I built the layout around a booking funnel: the hero moment, then credentials and social proof, then the call to action. Someone booking this kind of event scans and decides quickly, so I kept that path short. That's the intent behind it, not a measured result.",
         ],
         figure: { src: "/images/djbc-pillar-client.webp", alt: "DJ Big Cali premium brand presentation in sophisticated low-key lighting", caption: "Cinematic aesthetic positioning the brand for premium corporate and wedding clients." },
       },
@@ -155,7 +155,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "05",
         title: "Results & Takeaways",
         paragraphs: [
-          "The DJ Big Cali project proved that performance-driven frontend engineering and creative design aren't competing priorities — they're multipliers. When the tech is invisible and the experience is immersive, the brand speaks for itself.",
+          "There's no outcome to report. I finished the build, tried to get in touch with him, and never heard back, so it never went live. It stays here as a spec piece: a real act with real constraints, and a site nobody ever put in front of an audience.",
         ],
       },
     ],
