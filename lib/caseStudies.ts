@@ -161,25 +161,25 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
   },
   "bearded-threads": {
-    label: "E-Commerce & Brand Identity",
+    label: "Personal Brand / Apparel",
     title: "Bearded Threads",
-    intro: "A lifestyle apparel brand built on community, outdoor adventure, and clean design systems.",
+    intro: "My own apparel brand, built on community, outdoor adventure, and a clean design system.",
     heroImage: "/images/BTCC3darkgrey.webp",
     sections: [
       {
         num: "01",
         title: "The Challenge",
         paragraphs: [
-          "Bearded Threads needed a complete brand identity that could stand out in the crowded lifestyle apparel market. The goal was to create a cohesive visual system that communicated rugged authenticity while maintaining the polish expected of a modern e-commerce brand.",
-          "The challenge extended beyond just a logo — it required building a full design system including typography, color palette, product photography direction, and an e-commerce frontend that converted browsers into buyers. Every touchpoint needed to feel intentional and connected to the brand's core values of community, craftsmanship, and the outdoors.",
+          "Bearded Threads is my own brand. Community, craftsmanship, and the outdoors, in a lifestyle apparel market that's already crowded. I wanted an identity that could hold its own in it and still look polished enough to sell from.",
+          "That meant more than a logo. I did the typography, the color palette, the product design, the photography direction, and an e-commerce frontend to put it all on. I never launched it, so everything below is what I designed it to do, not what it did.",
         ],
       },
       {
         num: "02",
         title: "Identity System",
         paragraphs: [
-          "The identity system was designed for versatility across digital and physical touchpoints. The primary logo uses a bold, geometric wordmark that reads clearly at any scale — from favicon to storefront signage. A secondary icon mark provides flexibility for social media profiles, product tags, and packaging embossments.",
-          "The color hierarchy anchors the brand in deep, earthy tones with strategic accent colors that drive attention to calls-to-action and key product features. This system ensures consistent cross-platform brand recognition whether a customer encounters Bearded Threads on Instagram, the Shopify store, or a physical product tag.",
+          "I designed the identity for versatility. The primary wordmark is bold and geometric so it reads at any size, from a favicon to storefront signage, and a secondary icon mark covers social profiles, product tags, and packaging.",
+          "The color hierarchy sits in deep, earthy tones, with a few accent colors held back for calls to action and key product features. The point is that the brand stays recognizable wherever it turns up: a social profile, a store page, a tag sewn into a beanie.",
         ],
         figure: { src: "/images/brand-system.webp", alt: "Bearded Threads brand identity system showing logo variations, typography, and color palette", caption: "Complete brand identity system including primary and secondary logo marks, typography hierarchy, and color palette." , contain: 'light' },
       },
@@ -187,8 +187,8 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "03",
         title: "Product Design",
         paragraphs: [
-          "Product photography was approached with an e-commerce conversion mindset. Clean studio shots with controlled lighting showcase material quality and construction details — the textures, stitching, and silhouette that customers can't feel through a screen. Each image was composed to answer the buyer's unspoken questions about quality and fit.",
-          "The photography direction balances aspirational brand storytelling with the practical clarity that drives purchase decisions. White-background hero shots sit alongside styled flat lays that suggest outfit pairing and lifestyle context, giving shoppers both the information and the inspiration they need to convert.",
+          "The product designs are mine. The images are AI mockups I generated to see those designs on real garments, which let me judge placement, proportion, and how the marks sit on dark fabric without paying for samples and a photographer first.",
+          "I directed them the way I'd brief a shoot: clean studio lighting and white backgrounds for the hero frames, styled flat lays for outfit context. If the brand had gone further, these are the first things I'd have replaced with real photography.",
         ],
         figure: { src: "/images/black-beanie-product.webp", alt: "Bearded Threads black beanie product photography on clean studio background", caption: "Studio product photography designed for maximum e-commerce conversion." },
       },
@@ -196,8 +196,8 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "04",
         title: "Market Fit & Story",
         paragraphs: [
-          "Bearded Threads isn't just selling apparel — it's selling a lifestyle. The brand positioning targets the intersection of outdoor enthusiasts, craft culture, and community-driven identity. Lifestyle photography places products in authentic environments — campfires, trails, workshop benches — that resonate with the target demographic's aspirations.",
-          "This storytelling approach transforms simple products into identity markers. When a customer sees a Bearded Threads beanie at a trailhead campfire, they're not seeing a hat — they're seeing themselves in the brand's world. This emotional connection is what converts one-time buyers into repeat customers and brand advocates.",
+          "Bearded Threads sells an identity as much as it sells apparel. The positioning sits where outdoor people, craft culture, and community overlap, and the lifestyle imagery puts the products in those places: campfires, trails, workshop benches.",
+          "The idea is that someone sees the beanie at a trailhead and recognizes something of themselves in it. That's the bet the brand makes, and it never got tested, because nothing ever went on sale.",
         ],
         figure: { src: "/images/black-beanie-model1.webp", alt: "Model wearing Bearded Threads beanie in outdoor campfire lifestyle setting", caption: "Lifestyle photography connecting the product to its outdoor, adventure-driven demographic." },
       },
@@ -205,7 +205,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         num: "05",
         title: "Results & Takeaways",
         paragraphs: [
-          "The Bearded Threads project reinforced a core principle: brand identity isn't just visual — it's strategic. Every design decision, from color choices to photography angles, should serve both the emotional brand story and the practical conversion goals of the business.",
+          "There are no numbers here. I designed the brand and built the storefront. What exists is the identity system and the store design, finished and unsold.",
         ],
       },
     ],
